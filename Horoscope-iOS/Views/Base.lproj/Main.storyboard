@@ -29,14 +29,14 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Horoscope name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k6M-4z-aC9">
                                                     <rect key="frame" x="92" y="22" width="281" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Horoscope dates" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BGs-f5-2Nh">
                                                     <rect key="frame" x="92" y="51" width="281" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -66,13 +66,7 @@
                             <constraint firstItem="QmV-jg-ilJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ynw-eo-bVD"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Zodiac" id="Bic-tP-qFb">
-                        <barButtonItem key="rightBarButtonItem" title="Settings" image="gearshape" catalog="system" id="bOX-qc-Nq2">
-                            <connections>
-                                <segue destination="ugA-0C-XhZ" kind="show" identifier="NavigateToSettings" id="B9V-Ux-Zme"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Zodiac" id="Bic-tP-qFb"/>
                     <connections>
                         <outlet property="tableView" destination="QmV-jg-ilJ" id="Nq3-aG-ze0"/>
                     </connections>
@@ -88,30 +82,57 @@
                     <view key="view" contentMode="scaleToFill" id="pS9-8d-Bzi">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kjm-6b-lPB">
+                                <rect key="frame" x="0.0" y="172" width="393" height="612"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NzK-sS-ggy">
+                                        <rect key="frame" x="126" y="8" width="140" height="140"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="paG-Gv-CWH">
+                                        <rect key="frame" x="8" y="164" width="377" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                        <segments>
+                                            <segment title="Daily"/>
+                                            <segment title="Weekly"/>
+                                            <segment title="Monthly"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="didChangePeriod:" destination="IPH-hV-BkN" eventType="valueChanged" id="btW-oK-YBq"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="exC-BQ-3MF">
+                                        <rect key="frame" x="8" y="203" width="377" height="401"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <color key="textColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="O8b-3p-V0r"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="O8b-3p-V0r" firstAttribute="bottom" secondItem="Kjm-6b-lPB" secondAttribute="bottom" id="KHJ-G4-4rA"/>
+                            <constraint firstItem="Kjm-6b-lPB" firstAttribute="top" secondItem="O8b-3p-V0r" secondAttribute="top" id="L3s-WL-ezB"/>
+                            <constraint firstItem="O8b-3p-V0r" firstAttribute="trailing" secondItem="Kjm-6b-lPB" secondAttribute="trailing" id="UId-ui-swi"/>
+                            <constraint firstItem="Kjm-6b-lPB" firstAttribute="leading" secondItem="O8b-3p-V0r" secondAttribute="leading" id="zam-ys-w78"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Detail" id="fKe-RF-hoX"/>
+                    <connections>
+                        <outlet property="predictionTextView" destination="exC-BQ-3MF" id="RCU-vw-ZDx"/>
+                        <outlet property="signImageView" destination="NzK-sS-ggy" id="WPL-mo-qDl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Zu-kU-21b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1999.2366412213739" y="130.98591549295776"/>
-        </scene>
-        <!--Settings-->
-        <scene sceneID="yUX-Cq-4CK">
-            <objects>
-                <viewController id="ugA-0C-XhZ" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="egF-5p-20S">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="ekA-p0-Pwd"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Settings" id="ZVI-B6-mt5"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="aZw-6r-Yhs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1065" y="-589"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="kyt-Do-rxc">
@@ -133,7 +154,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="gearshape" catalog="system" width="128" height="123"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
