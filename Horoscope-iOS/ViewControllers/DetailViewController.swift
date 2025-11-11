@@ -12,7 +12,15 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var signImageView: UIImageView!
     @IBOutlet weak var predictionTextView: UITextView!
     
+    @IBOutlet weak var favoriteMenuItem: UIBarButtonItem!
+    
     var horoscope: Horoscope!
+    
+    var isFavorite: Bool = false
+    
+    var session: SessionManager!
+    
+    var predictionText: String? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +32,10 @@ class DetailViewController: UIViewController {
         signImageView.image = horoscope.getSignIcon()
         
         getPrediction(period: "daily")
+        
+        session = SessionManager()
+        isFavorite = session.isFavorite(sign: horoscope.id)
+        setFavoriteIcon()
     }
     
     @IBAction func didChangePeriod(_ sender: UISegmentedControl) {
@@ -31,6 +43,35 @@ class DetailViewController: UIViewController {
         case 0: getPrediction(period: "daily")
         case 1: getPrediction(period: "weekly")
         default: getPrediction(period: "monthly")
+        }
+    }
+    
+    @IBAction func setFavorite(_ sender: Any) {
+        if isFavorite {
+            session.setFavorite(sign: "")
+        } else {
+            session.setFavorite(sign: horoscope.id)
+        }
+        isFavorite = !isFavorite
+        setFavoriteIcon()
+    }
+    
+    @IBAction func sharePrediction(_ sender: Any) {
+        if let text = predictionText {
+            let textToShare = [ text ]
+            let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
+            
+            activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+            
+            self.present(activityViewController, animated: true, completion: nil)
+        }
+    }
+    
+    func setFavoriteIcon() {
+        if isFavorite {
+            favoriteMenuItem.image = UIImage(systemName: "heart.fill")
+        } else {
+            favoriteMenuItem.image = UIImage(systemName: "heart")
         }
     }
     
@@ -45,10 +86,10 @@ class DetailViewController: UIViewController {
                 
                 let jsonData = jsonObject["data"] as! [String: String]
                 
-                let result = jsonData["horoscope_data"]!
+                predictionText = jsonData["horoscope_data"]!
                 
                 DispatchQueue.main.async {
-                    self.predictionTextView.text = result
+                    self.predictionTextView.text = self.predictionText
                 }
             } catch {
                 print(error)

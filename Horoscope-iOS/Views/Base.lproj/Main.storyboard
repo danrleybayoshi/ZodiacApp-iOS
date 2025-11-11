@@ -28,14 +28,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Horoscope name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k6M-4z-aC9">
-                                                    <rect key="frame" x="92" y="22" width="281" height="21"/>
+                                                    <rect key="frame" x="92" y="22" width="245" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Horoscope dates" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BGs-f5-2Nh">
-                                                    <rect key="frame" x="92" y="51" width="281" height="21"/>
+                                                    <rect key="frame" x="92" y="51" width="245" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="textColor"/>
@@ -45,10 +45,16 @@
                                                     <rect key="frame" x="20" y="15" width="64" height="64"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="heart.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Y1d-j5-kX2">
+                                                    <rect key="frame" x="345" y="34" width="28" height="28"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                                    <color key="tintColor" systemColor="systemRedColor"/>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="datesLabel" destination="BGs-f5-2Nh" id="AXQ-ec-ifQ"/>
+                                            <outlet property="favoriteImageView" destination="Y1d-j5-kX2" id="085-WR-2mY"/>
                                             <outlet property="nameLabel" destination="k6M-4z-aC9" id="OCb-hf-ez4"/>
                                             <outlet property="signImageView" destination="F2k-ja-a0c" id="9wj-Fw-eci"/>
                                             <segue destination="IPH-hV-BkN" kind="show" identifier="NavigateToDetail" id="aBH-cL-QCN"/>
@@ -124,8 +130,23 @@
                             <constraint firstItem="Kjm-6b-lPB" firstAttribute="leading" secondItem="O8b-3p-V0r" secondAttribute="leading" id="zam-ys-w78"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Detail" id="fKe-RF-hoX"/>
+                    <navigationItem key="navigationItem" title="Detail" id="fKe-RF-hoX">
+                        <rightBarButtonItems>
+                            <barButtonItem title="Favorite" image="heart" catalog="system" id="laH-aS-U4I">
+                                <color key="tintColor" systemColor="systemRedColor"/>
+                                <connections>
+                                    <action selector="setFavorite:" destination="IPH-hV-BkN" id="kbK-p1-4nb"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" image="square.and.arrow.up" catalog="system" id="fj6-jO-LuY" userLabel="Share Menu Item">
+                                <connections>
+                                    <action selector="sharePrediction:" destination="IPH-hV-BkN" id="AN2-8A-QoZ"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
+                    </navigationItem>
                     <connections>
+                        <outlet property="favoriteMenuItem" destination="laH-aS-U4I" id="XWX-lC-twK"/>
                         <outlet property="predictionTextView" destination="exC-BQ-3MF" id="RCU-vw-ZDx"/>
                         <outlet property="signImageView" destination="NzK-sS-ggy" id="WPL-mo-qDl"/>
                     </connections>
@@ -154,11 +175,17 @@
         </scene>
     </scenes>
     <resources>
+        <image name="heart" catalog="system" width="128" height="107"/>
+        <image name="heart.fill" catalog="system" width="128" height="107"/>
+        <image name="square.and.arrow.up" catalog="system" width="110" height="128"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
